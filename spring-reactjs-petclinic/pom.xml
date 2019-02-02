@@ -14,10 +14,6 @@
 	<name>spring-reactjs-petclinic</name>
 	<url>http://localhost:5000</url>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
