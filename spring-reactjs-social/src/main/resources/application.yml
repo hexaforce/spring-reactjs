@@ -14,6 +14,7 @@ spring:
       WRITE_DATES_AS_TIMESTAMPS: false
     time-zone: JST
   jpa:
+    open-in-view: true
     show-sql: true
     hibernate:
       ddl-auto: update
@@ -23,6 +24,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
   security:
     oauth2:
       client:
