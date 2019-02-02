@@ -16,7 +16,7 @@ spring:
     time-zone: JST
   jpa:
     open-in-view: true
-    show-sql: true
+#    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
@@ -37,3 +37,7 @@ logging:
       springframework: INFO
       hibernate:
         SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
