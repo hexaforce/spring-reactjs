@@ -23,14 +23,21 @@ public class CacheConfig {
 
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
+        
         return new JCacheManagerCustomizer() {
             @Override
             public void customize(CacheManager cacheManager) {
-                CacheConfiguration<Long, String> config = CacheConfigurationBuilder
-                        .newCacheConfigurationBuilder(Long.class, String.class, ResourcePoolsBuilder.newResourcePoolsBuilder().heap(100, EntryUnit.ENTRIES))
+                
+                CacheConfiguration<Object, Object> config = CacheConfigurationBuilder.newCacheConfigurationBuilder(
+                            Object.class, 
+                            Object.class, 
+                            ResourcePoolsBuilder.newResourcePoolsBuilder().heap(100, EntryUnit.ENTRIES)
+                        )
                         .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofSeconds(60)))
                         .build();
+                
                 cacheManager.createCache("vets", Eh107Configuration.fromEhcacheCacheConfiguration(config));
+                
             }
         };
     }
