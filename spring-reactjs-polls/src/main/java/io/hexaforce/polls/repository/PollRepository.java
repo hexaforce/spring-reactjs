@@ -11,9 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import io.hexaforce.polls.model.Poll;
 
-/**
- * Created by rajeevkumarsingh on 20/11/17.
- */
 @Repository
 public interface PollRepository extends JpaRepository<Poll, Long> {
 
@@ -26,4 +23,5 @@ public interface PollRepository extends JpaRepository<Poll, Long> {
     List<Poll> findByIdIn(List<Long> pollIds);
 
     List<Poll> findByIdIn(List<Long> pollIds, Sort sort);
+    
 }

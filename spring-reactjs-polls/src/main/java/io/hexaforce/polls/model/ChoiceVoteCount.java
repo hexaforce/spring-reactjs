@@ -1,6 +1,7 @@
 package io.hexaforce.polls.model;
 
 public class ChoiceVoteCount {
+    
     private Long choiceId;
     private Long voteCount;
 
@@ -24,4 +25,5 @@ public class ChoiceVoteCount {
     public void setVoteCount(Long voteCount) {
         this.voteCount = voteCount;
     }
+    
 }

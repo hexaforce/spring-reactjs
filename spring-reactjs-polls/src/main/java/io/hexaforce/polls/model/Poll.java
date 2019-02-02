@@ -21,10 +21,11 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import io.hexaforce.polls.model.audit.UserDateAudit;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * Created by rajeevkumarsingh on 20/11/17.
- */
+@Getter
+@Setter
 @Entity
 @Table(name = "polls")
 public class Poll extends UserDateAudit {
@@ -46,38 +47,6 @@ public class Poll extends UserDateAudit {
 
     @NotNull
     private Instant expirationDateTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public List<Choice> getChoices() {
-        return choices;
-    }
-
-    public void setChoices(List<Choice> choices) {
-        this.choices = choices;
-    }
-
-    public Instant getExpirationDateTime() {
-        return expirationDateTime;
-    }
-
-    public void setExpirationDateTime(Instant expirationDateTime) {
-        this.expirationDateTime = expirationDateTime;
-    }
 
     public void addChoice(Choice choice) {
         choices.add(choice);

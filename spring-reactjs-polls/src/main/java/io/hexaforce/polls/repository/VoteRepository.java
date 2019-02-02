@@ -14,6 +14,7 @@ import io.hexaforce.polls.model.Vote;
 
 @Repository
 public interface VoteRepository extends JpaRepository<Vote, Long> {
+    
     @Query("SELECT NEW io.hexaforce.polls.model.ChoiceVoteCount(v.choice.id, count(v.id)) FROM Vote v WHERE v.poll.id in :pollIds GROUP BY v.choice.id")
     List<ChoiceVoteCount> countByPollIdInGroupByChoiceId(@Param("pollIds") List<Long> pollIds);
 
@@ -31,4 +32,5 @@ public interface VoteRepository extends JpaRepository<Vote, Long> {
 
     @Query("SELECT v.poll.id FROM Vote v WHERE v.user.id = :userId")
     Page<Long> findVotedPollIdsByUserId(@Param("userId") Long userId, Pageable pageable);
+    
 }

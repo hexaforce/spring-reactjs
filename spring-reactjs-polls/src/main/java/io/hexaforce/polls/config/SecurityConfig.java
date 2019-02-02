@@ -20,17 +20,13 @@ import io.hexaforce.polls.security.CustomUserDetailsService;
 import io.hexaforce.polls.security.JwtAuthenticationEntryPoint;
 import io.hexaforce.polls.security.JwtAuthenticationFilter;
 
-/**
- * Created by rajeevkumarsingh on 01/08/17.
- */
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -58,7 +54,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().antMatchers("/", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js").permitAll().antMatchers("/api/auth/**").permitAll().antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability").permitAll().antMatchers(HttpMethod.GET, "/api/polls/**", "/api/users/**").permitAll().anyRequest().authenticated();
+        http.cors()
+        .and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+        
+        .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        
+        .and().authorizeRequests()
+            .antMatchers("/", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
+            .antMatchers("/api/auth/**").permitAll().antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/polls/**", "/api/users/**").permitAll()
+            .anyRequest().authenticated();
 
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

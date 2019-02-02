@@ -4,8 +4,6 @@ import java.net.URI;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,35 +22,17 @@ import io.hexaforce.polls.payload.PagedResponse;
 import io.hexaforce.polls.payload.PollRequest;
 import io.hexaforce.polls.payload.PollResponse;
 import io.hexaforce.polls.payload.VoteRequest;
-import io.hexaforce.polls.repository.PollRepository;
-import io.hexaforce.polls.repository.UserRepository;
-import io.hexaforce.polls.repository.VoteRepository;
 import io.hexaforce.polls.security.CurrentUser;
 import io.hexaforce.polls.security.UserPrincipal;
 import io.hexaforce.polls.service.PollService;
 import io.hexaforce.polls.util.AppConstants;
-
-/**
- * Created by rajeevkumarsingh on 20/11/17.
- */
 
 @RestController
 @RequestMapping("/api/polls")
 public class PollController {
 
     @Autowired
-    private PollRepository pollRepository;
-
-    @Autowired
-    private VoteRepository voteRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private PollService pollService;
-
-    private static final Logger logger = LoggerFactory.getLogger(PollController.class);
 
     @GetMapping
     public PagedResponse<PollResponse> getPolls(@CurrentUser UserPrincipal currentUser, @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page, @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
