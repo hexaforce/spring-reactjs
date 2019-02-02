@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Route, IndexRoute, Redirect } from 'react-router';
 
 import App from './components/App';
-
 import WelcomePage from './components/WelcomePage';
 import FindOwnersPage from './components/owners/FindOwnersPage';
 import OwnersPage from './components/owners/OwnersPage';
@@ -13,11 +12,7 @@ import EditPetPage from './components/pets/EditPetPage';
 import VisitsPage from './components/visits/VisitsPage';
 import VetsPage from './components/vets/VetsPage';
 import ErrorPage from './components/ErrorPage';
-
-
 import NotFoundPage from './components/NotFoundPage';
-
-
 
 export default () => (
   <Route component={App}>

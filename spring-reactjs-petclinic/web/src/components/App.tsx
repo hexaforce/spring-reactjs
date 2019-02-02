@@ -1,14 +1,12 @@
 import * as React from 'react';
 import Menu from './Menu';
 
-export default ({location, children}) => (
+export default ({ location, children }) => (
   <div>
     <Menu name={location.pathname} />
     <div className='container-fluid'>
       <div className='container xd-container'>
-
         {children}
-
         <div className='container'>
           <div className='row'>
             <div className='col-12 text-center'>

@@ -33,7 +33,7 @@ export interface IConstraint {
 export type IInputChangeHandler = (name: string, value: string, error: IFieldError) => void;
 
 export interface ISelectOption {
-  value: string|number;
+  value: string | number;
   name: string;
 };
 

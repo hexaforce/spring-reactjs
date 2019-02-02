@@ -13,7 +13,7 @@ import Root from './Root';
 // Render Application
 const mountPoint = document.getElementById('mount');
 ReactDOM.render(
-  <AppContainer><Root history={history}/></AppContainer>,
+  <AppContainer><Root history={history} /></AppContainer>,
   mountPoint
 );
 

@@ -22,21 +22,17 @@ const getFilterFromLocation = (location) => {
 
 export default class FindOwnersPage extends React.Component<IFindOwnersPageProps, IFindOwnersPageState> {
   context: IRouterContext;
-
   static contextTypes = {
     router: React.PropTypes.object.isRequired
   };
-
   constructor(props) {
     super(props);
     this.onFilterChange = this.onFilterChange.bind(this);
     this.submitSearchForm = this.submitSearchForm.bind(this);
-
     this.state = {
       filter: getFilterFromLocation(props.location)
     };
   }
-
   componentDidMount() {
     const { filter } = this.state;
     if (typeof filter === 'string') {
@@ -45,7 +41,6 @@ export default class FindOwnersPage extends React.Component<IFindOwnersPageProps
       this.fetchData(filter);
     }
   }
-
   componentWillReceiveProps(nextProps: IFindOwnersPageProps) {
     const { location } = nextProps;
 
@@ -73,7 +68,6 @@ export default class FindOwnersPage extends React.Component<IFindOwnersPageProps
    */
   submitSearchForm() {
     const { filter } = this.state;
-
     this.context.router.push({
       pathname: '/owners/list',
       query: { 'lastName': filter || '' }
@@ -86,7 +80,6 @@ export default class FindOwnersPage extends React.Component<IFindOwnersPageProps
   fetchData(filter: string) {
     const query = filter ? encodeURIComponent(filter) : '';
     const requestUrl = url('api/owner/list?lastName=' + query);
-
     fetch(requestUrl)
       .then(response => response.json())
       .then(owners => { this.setState({ owners }); });
@@ -94,12 +87,10 @@ export default class FindOwnersPage extends React.Component<IFindOwnersPageProps
 
   render() {
     const { filter, owners } = this.state;
-
     return (
       <span>
         <section>
           <h2>Find Owners</h2>
-
           <form className='form-horizontal' action='javascript:void(0)'>
             <div className='form-group'>
               <div className='control-group' id='lastName'>

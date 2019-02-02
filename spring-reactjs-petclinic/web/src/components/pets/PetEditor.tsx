@@ -21,34 +21,26 @@ interface IPetEditorState {
 };
 
 export default class PetEditor extends React.Component<IPetEditorProps, IPetEditorState> {
-
   context: IRouterContext;
-
   static contextTypes = {
     router: React.PropTypes.object.isRequired
   };
-
   constructor(props) {
     super(props);
     this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
-    this.state = { editablePet: Object.assign({}, props.pet ) };
+    this.state = { editablePet: Object.assign({}, props.pet) };
   }
-
   onSubmit(event) {
     event.preventDefault();
-
     const { owner } = this.props;
     const { editablePet } = this.state;
-
     const request: IPetRequest = {
       birthDate: editablePet.birthDate,
       name: editablePet.name,
       typeId: editablePet.typeId
     };
-
-    const url = editablePet.isNew ? '/api/owners/' + owner.id + '/pets' :  '/api/owners/' + owner.id + '/pets/' + editablePet.id;
+    const url = editablePet.isNew ? '/api/owners/' + owner.id + '/pets' : '/api/owners/' + owner.id + '/pets/' + editablePet.id;
     submitForm(editablePet.isNew ? 'POST' : 'PUT', url, request, (status, response) => {
       if (status === 204) {
         this.context.router.push({
@@ -64,16 +56,13 @@ export default class PetEditor extends React.Component<IPetEditorProps, IPetEdit
   onInputChange(name: string, value: string) {
     const { editablePet } = this.state;
     const modifiedPet = Object.assign({}, editablePet, { [name]: value });
-
     this.setState({ editablePet: modifiedPet });
   }
 
   render() {
     const { owner, pettypes } = this.props;
     const { editablePet, error } = this.state;
-
     const formLabel = editablePet.isNew ? 'Add Pet' : 'Update Pet';
-
     return (
       <span>
         <h2>{formLabel}</h2>
@@ -83,7 +72,6 @@ export default class PetEditor extends React.Component<IPetEditorProps, IPetEdit
               <label className='col-sm-2 control-label'>Owner</label>
               <div className='col-sm-10'>{owner.firstName} {owner.lastName}</div>
             </div>
-
             <Input object={editablePet} error={error} label='Name' name='name' onChange={this.onInputChange} />
             <DateInput object={editablePet} error={error} label='Birth date' name='birthDate' onChange={this.onInputChange} />
             <SelectInput object={editablePet} error={error} label='Type' name='typeId' options={pettypes} onChange={this.onInputChange} />

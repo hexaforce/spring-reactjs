@@ -19,28 +19,21 @@ interface IOwnerEditorState {
 };
 
 export default class OwnerEditor extends React.Component<IOwnerEditorProps, IOwnerEditorState> {
-
   context: IRouterContext;
-
   static contextTypes = {
     router: React.PropTypes.object.isRequired
   };
-
   constructor(props) {
     super(props);
     this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
     this.state = {
       owner: Object.assign({}, props.initialOwner)
     };
   }
-
   onSubmit(event) {
     event.preventDefault();
-
     const { owner } = this.state;
-
     const url = owner.isNew ? '/api/owner' : '/api/owner/' + owner.id;
     submitForm(owner.isNew ? 'POST' : 'PUT', url, owner, (status, response) => {
       if (status === 200 || status === 201) {
@@ -58,7 +51,7 @@ export default class OwnerEditor extends React.Component<IOwnerEditorProps, IOwn
   onInputChange(name: string, value: string, fieldError: IFieldError) {
     const { owner, error } = this.state;
     const modifiedOwner = Object.assign({}, owner, { [name]: value });
-    const newFieldErrors = error ? Object.assign({}, error.fieldErrors, {[name]: fieldError }) : {[name]: fieldError };
+    const newFieldErrors = error ? Object.assign({}, error.fieldErrors, { [name]: fieldError }) : { [name]: fieldError };
     this.setState({
       owner: modifiedOwner,
       error: { fieldErrors: newFieldErrors }

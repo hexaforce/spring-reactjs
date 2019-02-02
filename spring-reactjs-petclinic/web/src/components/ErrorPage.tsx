@@ -16,7 +16,7 @@ export default class ErrorPage extends React.Component<void, IErrorPageState> {
   componentDidMount() {
     fetch('http://localhost:8080/api/oups')
       .then(response => response.json())
-      .then(error => this.setState({error}));
+      .then(error => this.setState({ error }));
   }
 
   render() {
@@ -26,7 +26,7 @@ export default class ErrorPage extends React.Component<void, IErrorPageState> {
       <img src='/images/pets.png' />
 
       <h2>Something happened...</h2>
-      { error ?
+      {error ?
         <span>
           <p><b>Status:</b> {error.status}</p>
           <p><b>Message:</b> {error.message}</p>

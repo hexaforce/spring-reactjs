@@ -15,7 +15,6 @@ interface IEditOwnerPageState {
 export default class EditOwnerPage extends React.Component<IEditOwnerPageProps, IEditOwnerPageState> {
   componentDidMount() {
     const { params } = this.props;
-
     if (params && params.ownerId) {
       const fetchUrl = url(`/api/owner/${params.ownerId}`);
       fetch(fetchUrl)

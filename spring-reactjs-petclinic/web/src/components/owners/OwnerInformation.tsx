@@ -3,10 +3,9 @@ import * as React from 'react';
 import { Link } from 'react-router';
 import { IOwner } from '../../types';
 
-export default ({owner}: { owner: IOwner }) => (
+export default ({ owner }: { owner: IOwner }) => (
   <section>
     <h2>Owner Information</h2>
-
     <table className='table table-striped'>
       <tbody>
         <tr>
@@ -27,7 +26,6 @@ export default ({owner}: { owner: IOwner }) => (
         </tr>
       </tbody>
     </table>
-
     <Link to={`/owners/${owner.id}/edit`} className='btn btn-default'>Edit Owner</Link>
     &nbsp;
     <Link to={`/owners/${owner.id}/pets/new`} className='btn btn-default'>Add New Pet</Link>

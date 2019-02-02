@@ -28,17 +28,14 @@ const NEW_PET: IEditablePet = {
 };
 
 export default class NewPetPage extends React.Component<INewPetPageProps, INewPetPageState> {
-
   componentDidMount() {
     createPetEditorModel(this.props.params.ownerId, Promise.resolve(NEW_PET))
       .then(model => this.setState(model));
   }
-
   render() {
     if (!this.state) {
       return <LoadingPanel />;
     }
-
     return <PetEditor {...this.state} />;
   }
 }

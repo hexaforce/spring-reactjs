@@ -1,14 +1,12 @@
 import * as React from 'react';
 
 import { IOwner, IPet, IPetType, IVisit, IError, IRouterContext } from '../../types';
-
 import { url, submitForm } from '../../util';
 import { NotEmpty } from '../form/Constraints';
 
 import DateInput from '../form/DateInput';
 import Input from '../form/Input';
 import PetDetails from './PetDetails';
-
 
 interface IVisitsPageProps {
   params: {
@@ -24,24 +22,18 @@ interface IVisitsPageState {
 }
 
 export default class VisitsPage extends React.Component<IVisitsPageProps, IVisitsPageState> {
-
- context: IRouterContext;
-
+  context: IRouterContext;
   static contextTypes = {
     router: React.PropTypes.object.isRequired
   };
-
-
   constructor(props) {
     super(props);
-
     this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
     const { params } = this.props;
-
     if (params && params.ownerId) {
       fetch(url(`/api/owner/${params.ownerId}`))
         .then(response => response.json())
@@ -56,10 +48,8 @@ export default class VisitsPage extends React.Component<IVisitsPageProps, IVisit
 
   onSubmit(event) {
     event.preventDefault();
-
     const petId = this.props.params.petId;
     const { owner, visit } = this.state;
-
     const request = {
       date: visit.date,
       description: visit.description
@@ -80,7 +70,6 @@ export default class VisitsPage extends React.Component<IVisitsPageProps, IVisit
 
   onInputChange(name: string, value: string) {
     const { visit } = this.state;
-
     this.setState(
       { visit: Object.assign({}, visit, { [name]: value }) }
     );
@@ -90,12 +79,9 @@ export default class VisitsPage extends React.Component<IVisitsPageProps, IVisit
     if (!this.state) {
       return <h2>Loading...</h2>;
     }
-
-    const { owner, error, visit } = this.state;
+    const { owner, error, visit } = this.state;
     const petId = this.props.params.petId;
-
     const pet = owner.pets.find(candidate => candidate.id.toString() === petId);
-
     return (
       <div>
         <h2>Visits</h2>

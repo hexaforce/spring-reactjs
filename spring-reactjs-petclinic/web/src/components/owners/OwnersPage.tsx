@@ -16,16 +16,12 @@ interface IOwnerPageState {
 }
 
 export default class OwnersPage extends React.Component<IOwnersPageProps, IOwnerPageState> {
-
   constructor() {
     super();
-
     this.state = {};
   }
-
   componentDidMount() {
     const { params } = this.props;
-
     if (params && params.ownerId) {
       const fetchUrl = url(`/api/owner/${params.ownerId}`);
       fetch(fetchUrl)
@@ -33,14 +29,11 @@ export default class OwnersPage extends React.Component<IOwnersPageProps, IOwner
         .then(owner => this.setState({ owner }));
     }
   }
-
   render() {
     const { owner } = this.state;
-
     if (!owner) {
       return <h2>No Owner loaded</h2>;
     }
-
     return (
       <span>
         <OwnerInformation owner={owner} />
