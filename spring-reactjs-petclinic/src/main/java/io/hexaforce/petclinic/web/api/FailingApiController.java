@@ -1,9 +1,10 @@
 package io.hexaforce.petclinic.web.api;
 
-import io.hexaforce.petclinic.web.CrashController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.hexaforce.petclinic.web.CrashController;
 
 /**
  * Controller used to showcase what happens when an exception is thrown

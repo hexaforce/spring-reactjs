@@ -31,13 +31,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-//import org.joda.time.LocalDate;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Simple business object representing a pet.
@@ -49,16 +50,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "pets")
 public class Pet extends NamedEntity {
-
+    
+    @Getter
+    @Setter
     @Column(name = "birth_date")
-    //@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate birthDate;
-
+    
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "type_id")
     private PetType type;
-
+    
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "owner_id")
     @JsonIgnore
@@ -66,30 +72,6 @@ public class Pet extends NamedEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
     private Set<Visit> visits;
-
-    public LocalDate getBirthDate() {
-        return this.birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public PetType getType() {
-        return this.type;
-    }
-
-    public void setType(PetType type) {
-        this.type = type;
-    }
-
-    public Owner getOwner() {
-        return this.owner;
-    }
-
-    protected void setOwner(Owner owner) {
-        this.owner = owner;
-    }
 
     protected Set<Visit> getVisitsInternal() {
         if (this.visits == null) {

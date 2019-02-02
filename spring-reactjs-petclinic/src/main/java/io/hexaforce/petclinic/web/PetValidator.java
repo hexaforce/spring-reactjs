@@ -15,10 +15,11 @@
  */
 package io.hexaforce.petclinic.web;
 
-import io.hexaforce.petclinic.model.Pet;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import io.hexaforce.petclinic.model.Pet;
 
 /**
  * <code>Validator</code> for <code>Pet</code> forms.

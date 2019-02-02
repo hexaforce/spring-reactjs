@@ -18,11 +18,12 @@ package io.hexaforce.petclinic.web;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import io.hexaforce.petclinic.model.Vets;
-import io.hexaforce.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import io.hexaforce.petclinic.model.Vets;
+import io.hexaforce.petclinic.service.ClinicService;
 
 /**
  * @author Juergen Hoeller

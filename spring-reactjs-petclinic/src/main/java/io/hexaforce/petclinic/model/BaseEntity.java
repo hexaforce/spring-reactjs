@@ -22,6 +22,9 @@ import javax.persistence.MappedSuperclass;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Simple JavaBean domain object with an id property. Used as a base class for
  * objects needing this property.
@@ -29,19 +32,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Ken Krebs
  * @author Juergen Hoeller
  */
+@Getter
+@Setter
 @MappedSuperclass
 public class BaseEntity {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @JsonProperty("isNew")
     public boolean isNew() {

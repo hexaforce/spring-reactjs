@@ -21,9 +21,10 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
+import org.springframework.stereotype.Component;
+
 import io.hexaforce.petclinic.model.PetType;
 import io.hexaforce.petclinic.service.ClinicService;
-import org.springframework.stereotype.Component;
 
 /**
  * Instructs Spring MVC on how to parse and print elements of type 'PetType'.
