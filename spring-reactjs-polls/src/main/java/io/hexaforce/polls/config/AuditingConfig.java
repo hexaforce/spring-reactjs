@@ -15,13 +15,16 @@ import io.hexaforce.polls.security.UserPrincipal;
 @Configuration
 @EnableJpaAuditing
 public class AuditingConfig {
+    
     @Bean
     public AuditorAware<Long> auditorProvider() {
         return new SpringSecurityAuditAwareImpl();
     }
+    
 }
 
 class SpringSecurityAuditAwareImpl implements AuditorAware<Long> {
+    
     @Override
     public Optional<Long> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -31,4 +34,5 @@ class SpringSecurityAuditAwareImpl implements AuditorAware<Long> {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return Optional.ofNullable(userPrincipal.getId());
     }
+    
 }
