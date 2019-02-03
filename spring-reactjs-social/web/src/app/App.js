@@ -27,7 +27,6 @@ class App extends Component {
       currentUser: null,
       loading: false
     }
-
     this.loadCurrentlyLoggedInUser = this.loadCurrentlyLoggedInUser.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
@@ -36,9 +35,7 @@ class App extends Component {
     this.setState({
       loading: true
     });
-
-    getCurrentUser()
-    .then(response => {
+    getCurrentUser().then(response => {
       this.setState({
         currentUser: response,
         authenticated: true,
@@ -68,7 +65,6 @@ class App extends Component {
     if(this.state.loading) {
       return <LoadingIndicator />
     }
-
     return (
       <div className="app">
         <div className="app-top-box">
@@ -77,12 +73,9 @@ class App extends Component {
         <div className="app-body">
           <Switch>
             <Route exact path="/" component={Home}></Route>           
-            <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-              component={Profile}></PrivateRoute>
-            <Route path="/login"
-              render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
-            <Route path="/signup"
-              render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}></Route>
+            <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}></PrivateRoute>
+            <Route path="/login" render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
+            <Route path="/signup" render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>  
             <Route component={NotFound}></Route>
           </Switch>

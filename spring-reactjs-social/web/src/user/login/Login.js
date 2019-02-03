@@ -12,7 +12,7 @@ class Login extends Component {
     componentDidMount() {
         // If the OAuth2 login encounters an error, the user is redirected to the /login page with an error.
         // Here we display the error and then remove the error query parameter from the location.
-        if(this.props.location.state && this.props.location.state.error) {
+        if (this.props.location.state && this.props.location.state.error) {
             setTimeout(() => {
                 Alert.error(this.props.location.state.error, {
                     timeout: 5000
@@ -24,16 +24,14 @@ class Login extends Component {
             }, 100);
         }
     }
-    
     render() {
-        if(this.props.authenticated) {
+        if (this.props.authenticated) {
             return <Redirect
                 to={{
-                pathname: "/",
-                state: { from: this.props.location }
-            }}/>;            
+                    pathname: "/",
+                    state: { from: this.props.location }
+                }} />;
         }
-
         return (
             <div className="login-container">
                 <div className="login-content">
@@ -65,7 +63,6 @@ class SocialLogin extends Component {
     }
 }
 
-
 class LoginForm extends Component {
     constructor(props) {
         super(props);
@@ -76,24 +73,18 @@ class LoginForm extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
     handleInputChange(event) {
         const target = event.target;
-        const inputName = target.name;        
+        const inputName = target.name;
         const inputValue = target.value;
-
         this.setState({
-            [inputName] : inputValue
-        });        
+            [inputName]: inputValue
+        });
     }
-
     handleSubmit(event) {
-        event.preventDefault();   
-
+        event.preventDefault();
         const loginRequest = Object.assign({}, this.state);
-
-        login(loginRequest)
-        .then(response => {
+        login(loginRequest).then(response => {
             localStorage.setItem(ACCESS_TOKEN, response.accessToken);
             Alert.success("You're successfully logged in!");
             this.props.history.push("/");
@@ -101,24 +92,19 @@ class LoginForm extends Component {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
         });
     }
-    
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="form-item">
-                    <input type="email" name="email" 
-                        className="form-control" placeholder="Email"
-                        value={this.state.email} onChange={this.handleInputChange} required/>
+                    <input type="email" name="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.handleInputChange} required />
                 </div>
                 <div className="form-item">
-                    <input type="password" name="password" 
-                        className="form-control" placeholder="Password"
-                        value={this.state.password} onChange={this.handleInputChange} required/>
+                    <input type="password" name="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} required />
                 </div>
                 <div className="form-item">
                     <button type="submit" className="btn btn-block btn-primary">Login</button>
                 </div>
-            </form>                    
+            </form>
         );
     }
 }
