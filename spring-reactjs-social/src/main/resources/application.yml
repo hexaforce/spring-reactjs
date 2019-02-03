@@ -15,7 +15,7 @@ spring:
     time-zone: JST
   jpa:
     open-in-view: true
-    show-sql: true
+#    show-sql: true
     hibernate:
       ddl-auto: update
 #      naming:
@@ -61,6 +61,10 @@ logging:
       springframework: INFO
       hibernate:
         SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
 app:
   auth:
     tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
