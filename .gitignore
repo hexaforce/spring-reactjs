@@ -1,7 +1,7 @@
 spring-reactjs-polls/web/node_modules/
 spring-reactjs-social/web/node_modules/
 spring-reactjs-petclinic/web/node_modules/
-spring-reactjs-websocket/web/node_modules/
+spring-reactjs-websocket/node_modules/
 spring-reactjs-polls/target/
 spring-reactjs-social/target/
 spring-reactjs-petclinic/target/
