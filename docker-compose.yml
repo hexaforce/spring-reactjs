@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+### MySQL ###
+  mysql:
+    image: mysql:latest
+    ports: 
+      -  "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: react-native
+    volumes:
+      - ./db/mysql_init:/docker-entrypoint-initdb.d
+      - ./db/mysql_data:/var/lib/mysql
+
+### Redis ###
+  redis:
+    image: redis:latest
+    ports: 
+      - "6379:6379"
+    command: redis-server --appendonly yes --requirepass foobared
+
+### RabbitMQ ###
+  rabbitmq:
+    image: rabbitmq:management
+    ports: 
+      -  "15672:15672"
+      -  "5672:5672"
