@@ -16,4 +16,3 @@ function register(registrations) {
 module.exports = {
 	register: register
 };
-

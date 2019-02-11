@@ -14,7 +14,7 @@ import io.hexaforce.websocket.service.SpringDataJpaUserDetailsService;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SpringDataJpaUserDetailsService userDetailsService;

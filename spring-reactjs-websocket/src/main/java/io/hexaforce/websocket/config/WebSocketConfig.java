@@ -8,7 +8,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @Component
 @EnableWebSocketMessageBroker
-public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	public static final String MESSAGE_PREFIX = "/topic";
 
@@ -22,4 +22,5 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 		registry.enableSimpleBroker(MESSAGE_PREFIX);
 		registry.setApplicationDestinationPrefixes("/app");
 	}
+
 }

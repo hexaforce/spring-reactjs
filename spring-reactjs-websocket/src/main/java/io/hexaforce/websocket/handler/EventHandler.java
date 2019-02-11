@@ -1,6 +1,6 @@
 package io.hexaforce.websocket.handler;
 
-import static io.hexaforce.websocket.config.WebSocketConfiguration.MESSAGE_PREFIX;
+import static io.hexaforce.websocket.config.WebSocketConfig.MESSAGE_PREFIX;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
