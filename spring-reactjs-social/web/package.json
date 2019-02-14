@@ -11,6 +11,9 @@
     "react-s-alert": "^1.4.1",
     "react-scripts": "1.1.5"
   },
+  "keywords": [
+    "hexaforce"
+  ],
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
