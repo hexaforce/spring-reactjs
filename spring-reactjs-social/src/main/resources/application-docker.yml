@@ -4,11 +4,9 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/social?useSSL=false&serverTimezone=JST&useLegacyDatetimeCode=false
+    url: jdbc:mysql://mysql:3306/social?useSSL=false&serverTimezone=JST&useLegacyDatetimeCode=false
     username: test
     password: password
-    schema: classpath*:db/schema.sql
-    data: classpath*:db/data.sql
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
@@ -16,8 +14,8 @@ spring:
   jpa:
     open-in-view: true
 #    show-sql: true
-    hibernate:
-      ddl-auto: create
+#    hibernate:
+#      ddl-auto: update
 #      naming:
 #        implicit-strategy: org.hibernate.cfg.ImprovedNamingStrategy
 #        physical-strategy: org.hibernate.cfg.ImprovedNamingStrategy

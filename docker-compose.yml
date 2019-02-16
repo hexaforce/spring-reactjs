@@ -57,7 +57,7 @@ services:
 #    volumes:
 #      -  ./rabbitmq/etc/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
 
-### spring-reactjs-websocket ###
+### spring-reactjs-polls ###
   spring-reactjs-polls:
     container_name: reactjs-polls
     restart: always
@@ -74,3 +74,22 @@ services:
       - redis
       - rabbitmq
     command: mvn clean spring-boot:run -DskipTests=true -Dspring-boot.run.profiles=docker
+
+### spring-reactjs-social ###
+  spring-reactjs-social:
+    container_name: reactjs-social
+    restart: always
+    build: ./spring-reactjs-social
+    working_dir: /spring-reactjs-social
+    volumes:
+      - ./spring-reactjs-social:/spring-reactjs-social
+      - ~/.m2:/root/.m2
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+      - mongo
+      - redis
+      - rabbitmq
+    command: mvn clean spring-boot:run -DskipTests=true -Dspring-boot.run.profiles=docker
+    

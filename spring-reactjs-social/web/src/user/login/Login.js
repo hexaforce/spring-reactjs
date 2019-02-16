@@ -71,6 +71,7 @@ class SocialLogin extends Component {
 }
 
 class LoginForm extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
