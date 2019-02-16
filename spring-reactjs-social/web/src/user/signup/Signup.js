@@ -10,102 +10,101 @@ import Alert from 'react-s-alert';
 
 class Signup extends Component {
 
-    render() {
-        if (this.props.authenticated) {
-            return <Redirect
-                to={{
-                    pathname: "/",
-                    state: { from: this.props.location }
-                }} />;
-        }
-
-        return (
-        		<div className="signup-container">
-        		  <div className="signup-content">
-        		    <h1 className="signup-title">デモサイトにアカウント登録</h1>
-        		    <SocialSignup />
-        		    <div className="or-separator">
-        		      <span className="or-text">ソーシャルアカウントをお持ちでない場合</span>
-        		    </div>
-        		    <SignupForm {...this.props} />
-        		    <span className="login-link">すでにアカウントをお持ちの方　 
-        		      <Link to="/login">ログイン</Link>
-        		    </span>
-        		  </div>
-        		</div>
-        );
+  render() {
+    if (this.props.authenticated) {
+      return <Redirect
+        to={{
+          pathname: "/",
+          state: { from: this.props.location }
+        }} />;
     }
+    return (
+    		<div className="signup-container">
+    		  <div className="signup-content">
+    		  <h1 className="signup-title">デモサイトにアカウント登録</h1>
+    		  <SocialSignup />
+    		  <div className="or-separator">
+    		    <span className="or-text">ソーシャルアカウントをお持ちでない場合</span>
+    		  </div>
+    		  <SignupForm {...this.props} />
+    		  <span className="login-link">すでにアカウントをお持ちの方　 
+    		    <Link to="/login">ログイン</Link>
+    		  </span>
+    		  </div>
+    		</div>
+    );
+  }
 }
 
 class SocialSignup extends Component {
-    render() {
-        return (
-        		<div className="social-signup">
-        		  <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
-        		    <img src={googleLogo} alt="Google" />Googleアカウントで登録
-        		  </a>
-        		  <a className="btn btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
-        		    <img src={fbLogo} alt="Facebook" />Facebookアカウントで登録
-        		  </a>
-        		  <a className="btn btn-block social-btn github" href={GITHUB_AUTH_URL}>
-        		    <img src={githubLogo} alt="Github" />Githubアカウントで登録
-        		  </a>
-        		</div>
-        );
-    }
+  render() {
+    return (
+    		<div className="social-signup">
+    		  <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
+    		  <img src={googleLogo} alt="Google" />Googleアカウントで登録
+    		  </a>
+    		  <a className="btn btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
+    		  <img src={fbLogo} alt="Facebook" />Facebookアカウントで登録
+    		  </a>
+    		  <a className="btn btn-block social-btn github" href={GITHUB_AUTH_URL}>
+    		  <img src={githubLogo} alt="Github" />Githubアカウントで登録
+    		  </a>
+    		</div>
+    );
+  }
 }
 
 class SignupForm extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: '',
-            email: '',
-            password: ''
-        }
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      password: ''
     }
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const inputName = target.name;
-        const inputValue = target.value;
-        this.setState({
-            [inputName]: inputValue
-        });
-    }
+  handleInputChange(event) {
+    const target = event.target;
+    const inputName = target.name;
+    const inputValue = target.value;
+    this.setState({
+      [inputName]: inputValue
+    });
+  }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const signUpRequest = Object.assign({}, this.state);
-        signup(signUpRequest).then(response => {
-                Alert.success("正常にアカウント登録されました。 続行するにはログインしてください。");
-                this.props.history.push("/login");
-            }).catch(error => {
-                Alert.error((error && error.message) || 'アカウント登録に失敗しました。 もう一度やり直してください。');
-            });
-    }
+  handleSubmit(event) {
+    event.preventDefault();
+    const signUpRequest = Object.assign({}, this.state);
+    signup(signUpRequest).then(response => {
+        Alert.success("正常にアカウント登録されました。 続行するにはログインしてください。");
+        this.props.history.push("/login");
+      }).catch(error => {
+        Alert.error((error && error.message) || 'アカウント登録に失敗しました。 もう一度やり直してください。');
+      });
+  }
 
-    render() {
-        return (
-        		<form onSubmit={this.handleSubmit}>
-        		  <div className="form-item">
-        		    <input type="text" name="name" className="form-control" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} required />
-        		  </div>
-        		  <div className="form-item">
-        		    <input type="email" name="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.handleInputChange} required />
-        		  </div>
-        		  <div className="form-item">
-        		    <input type="password" name="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} required />
-        		  </div>
-        		  <div className="form-item">
-        		    <button type="submit" className="btn btn-block btn-primary" >アカウント登録</button>
-        		  </div>
-        		</form>
-        );
-    }
+  render() {
+    return (
+    		<form onSubmit={this.handleSubmit}>
+    		  <div className="form-item">
+    		  <input type="text" name="name" className="form-control" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} required />
+    		  </div>
+    		  <div className="form-item">
+    		  <input type="email" name="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.handleInputChange} required />
+    		  </div>
+    		  <div className="form-item">
+    		  <input type="password" name="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} required />
+    		  </div>
+    		  <div className="form-item">
+    		  <button type="submit" className="btn btn-block btn-primary" >アカウント登録</button>
+    		  </div>
+    		</form>
+    );
+  }
 }
 
 export default Signup

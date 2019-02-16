@@ -21,7 +21,7 @@ import './App.css';
 
 class App extends Component {
 
-	constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       authenticated: false,
@@ -45,8 +45,8 @@ class App extends Component {
     }).catch(error => {
       this.setState({
         loading: false
-      });  
-    });    
+      });
+    });
   }
 
   handleLogout() {
@@ -63,30 +63,30 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.loading) {
+    if (this.state.loading) {
       return <LoadingIndicator />
     }
     return (
-    		<div className="app">
-    		  <div className="app-top-box">
-    		    <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} />
-    		  </div>
-    		  <div className="app-body">
-    		    <Switch>
-    		      <Route exact path="/" component={Home}></Route>
-    		      <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}></PrivateRoute>
-    		      <Route path="/login" render={(props) =>
-    		        <Login authenticated={this.state.authenticated} {...props} />}>
-    		      </Route>
-    		      <Route path="/signup" render={(props) =>
-    		        <Signup authenticated={this.state.authenticated} {...props} />}>
-    		      </Route>
-    		      <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
-    		      <Route component={NotFound}></Route>
-    		    </Switch>
-    		  </div>
-    		  <Alert stack={{limit: 3}} timeout = {3000} position='top-right' effect='slide' offset={65} />
-    		</div>
+      <div className="app">
+        <div className="app-top-box">
+          <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} />
+        </div>
+        <div className="app-body">
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}></PrivateRoute>
+            <Route path="/login" render={(props) =>
+              <Login authenticated={this.state.authenticated} {...props} />}>
+            </Route>
+            <Route path="/signup" render={(props) =>
+              <Signup authenticated={this.state.authenticated} {...props} />}>
+            </Route>
+            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
+            <Route component={NotFound}></Route>
+          </Switch>
+        </div>
+        <Alert stack={{ limit: 3 }} timeout={3000} position='top-right' effect='slide' offset={65} />
+      </div>
     );
   }
 
