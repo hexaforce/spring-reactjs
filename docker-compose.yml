@@ -8,10 +8,10 @@ services:
     image: mysql/mysql-server:5.7
     restart: always
     environment:
-      MYSQL_ROOT_HOST: '%'
       MYSQL_DATABASE: example
       MYSQL_USER: test
       MYSQL_PASSWORD: password
+      MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: password
     ports:
       - "3306:3306"
