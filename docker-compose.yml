@@ -2,9 +2,13 @@ version: '3'
 services:
 
 ### MySQL ###
-  mysql-service:
+  mysql:
+    restart: always
+    container_name: mysql-service
     image: mysql/mysql-server:5.7
+    restart: always
     environment:
+      MYSQL_ROOT_HOST: '%'
       MYSQL_DATABASE: example
       MYSQL_USER: test
       MYSQL_PASSWORD: password
@@ -12,23 +16,60 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
-      - ./mysql/conf.d:/etc/mysql/conf.d
-      - ./mysql:/var/log/mysql
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./mysql/etc/mysql/conf.d/conf.d:/etc/mysql/conf.d
+      - ./mysql/var/log/mysql:/var/log/mysql
+
+### MongoDB ###
+  mongo:
+    container_name: mongo-service
+    image: mongo:3.6-stretch
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo/data/db:/data/db
+      - ./mongo/data/configdb:/data/configdb
 
 ### Redis ###
-  redis-service:
+  redis:
+    container_name: redis-service
     image: redis:4.0-alpine
     ports: 
-      - "6379:6379"
+      - 6379:6379
     command: redis-server --appendonly yes --requirepass foobared
     volumes:
        - ./redis:/data
 
 ### RabbitMQ ###
-  rabbitmq-service:
+  rabbitmq:
+    container_name: rabbitmq-service
     image: rabbitmq:3.7-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
     ports: 
-      -  "15672:15672"
-      -  "5672:5672"
+      -  15672:15672
+      -  5672:5672
+#    volumes:
+#      -  ./rabbitmq/etc/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
 
+### spring-reactjs-websocket ###
+  spring-reactjs-polls:
+    restart: always
+    build: ./spring-reactjs-polls
+    working_dir: /spring-reactjs-polls
+    volumes:
+      - ./spring-reactjs-polls:/spring-reactjs-polls
+      - ~/.m2:/root/.m2
+    ports:
+      - 5000:500
+    depends_on:
+      - mysql
+      - mongo
+      - redis
+      - rabbitmq
+    command: mvn clean spring-boot:run -Dspring-boot.run.profiles=docker
