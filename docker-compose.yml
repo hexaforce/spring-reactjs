@@ -59,6 +59,7 @@ services:
 
 ### spring-reactjs-websocket ###
   spring-reactjs-polls:
+    container_name: reactjs-polls
     restart: always
     build: ./spring-reactjs-polls
     working_dir: /spring-reactjs-polls
@@ -66,10 +67,10 @@ services:
       - ./spring-reactjs-polls:/spring-reactjs-polls
       - ~/.m2:/root/.m2
     ports:
-      - 5000:500
+      - 5000:5000
     depends_on:
       - mysql
       - mongo
       - redis
       - rabbitmq
-    command: mvn clean spring-boot:run -Dspring-boot.run.profiles=docker
+    command: mvn clean spring-boot:run -DskipTests=true -Dspring-boot.run.profiles=docker
