@@ -12,7 +12,7 @@
 
 	<artifactId>spring-reactjs-petclinic</artifactId>
 	<name>spring-reactjs-petclinic</name>
-	<url>http://localhost:5000</url>
+	<url>http://localhost:8080</url>
 
 	<dependencies>
 		<dependency>

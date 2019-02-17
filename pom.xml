@@ -10,10 +10,10 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>spring-reactjs-polls</module>
-		<module>spring-reactjs-social</module>
-		<module>spring-reactjs-petclinic</module>
-		<module>spring-reactjs-websocket</module>
+		<!-- <module>spring-reactjs-websocket</module> -->
+		<module>petclinic-server</module>
+		<module>polls-server</module>
+		<module>social-server</module>
 	</modules>
 
 	<parent>
@@ -26,11 +26,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-        <docker.image.prefix>hexaforce</docker.image.prefix>
+		<docker.image.prefix>hexaforce</docker.image.prefix>
 	</properties>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
@@ -55,7 +55,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -94,13 +94,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<compilerArguments>
-						<Xlint />
-					</compilerArguments>
-					<verbose>true</verbose>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
-					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
 			<plugin>

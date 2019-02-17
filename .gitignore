@@ -35,3 +35,4 @@ nbdist/
 hs_err_pid*
 /mongo/
 /redis/
+/mysql/
