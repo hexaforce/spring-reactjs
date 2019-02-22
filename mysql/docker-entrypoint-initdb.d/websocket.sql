@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS websocket;
+
+ALTER DATABASE websocket
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
+
+GRANT ALL PRIVILEGES ON *.* TO test@localhost IDENTIFIED BY 'test';
+
+USE websocket;
