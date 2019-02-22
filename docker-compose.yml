@@ -8,11 +8,10 @@ services:
     image: mysql/mysql-server:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: example
+#      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: test
       MYSQL_PASSWORD: password
-      MYSQL_ROOT_HOST: '%'
-      MYSQL_ROOT_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
@@ -26,7 +25,7 @@ services:
     image: mongo:3.6-stretch
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_USERNAME: test
       MONGO_INITDB_ROOT_PASSWORD: password
     ports:
       - 27017:27017
@@ -49,8 +48,8 @@ services:
     container_name: rabbitmq-service
     image: rabbitmq:3.7-management-alpine
     environment:
-      RABBITMQ_DEFAULT_USER: rabbitmq
-      RABBITMQ_DEFAULT_PASS: rabbitmq
+      RABBITMQ_DEFAULT_USER: test
+      RABBITMQ_DEFAULT_PASS: password
     ports: 
       -  15672:15672
       -  5672:5672
