@@ -8,10 +8,10 @@ import io.hexaforce.social.config.AppProperties;
 
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
-public class SpringSocialApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringSocialApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
     
 }

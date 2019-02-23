@@ -8,21 +8,15 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     username: test
     password: password
-#    schema: classpath*:db/schema.sql
-#    data: classpath*:db/data.sql
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
     time-zone: JST
   jpa:
     open-in-view: true
-#    show-sql: true
-    hibernate:
-      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-#        format_sql: true
   data:
     rest:
       base-path: /api

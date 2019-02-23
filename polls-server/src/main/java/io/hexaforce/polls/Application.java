@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 @SpringBootApplication
-@EntityScan(basePackageClasses = { PollsApplication.class, Jsr310JpaConverters.class })
-public class PollsApplication {
+@EntityScan(basePackageClasses = { Application.class, Jsr310JpaConverters.class })
+public class Application {
 
     @PostConstruct
     void init() {
@@ -19,7 +19,7 @@ public class PollsApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(PollsApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }
