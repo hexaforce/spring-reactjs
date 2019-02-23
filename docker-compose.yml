@@ -57,27 +57,27 @@ services:
 #      -  ./docker/rabbitmq/etc/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
 
 ### social-server ###
-  social-server:
-    container_name: social-server
-    image: hexaforce/social-server:latest
-    volumes:
-      - ./docker/social-server/tmp:/tmp
-    ports:
-      - 8080:8080
-    depends_on:
-      - mysql
-      - mongo
-      - redis
-      - rabbitmq
-  social-client:
-    container_name: social-client
-    image: hexaforce/social-client:latest
-    volumes:
-      - ./docker/social-client/tmp:/tmp
-    ports:
-      - 3000:3000
-    depends_on:
-      - social-server
+#  social-server:
+#    container_name: social-server
+#    image: hexaforce/social-server:latest
+#    volumes:
+#      - ./docker/social-server/tmp:/tmp
+#    ports:
+#      - 8080:8080
+#    depends_on:
+#      - mysql
+#      - mongo
+#      - redis
+#      - rabbitmq
+#  social-client:
+#    container_name: social-client
+#    image: hexaforce/social-client:latest
+#    volumes:
+#      - ./docker/social-client/tmp:/tmp
+#    ports:
+#      - 3000:3000
+#    depends_on:
+#      - social-server
 
 ### polls-server ###
 #  polls-server:

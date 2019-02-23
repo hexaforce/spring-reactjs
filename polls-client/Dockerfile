@@ -1,14 +1,31 @@
-FROM node:10.15.1 as build
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-COPY package.json /usr/src/app/package.json
-RUN npm install --silent
-RUN npm install react-scripts -g --silent
-COPY . /usr/src/app
-RUN npm run build
+###############################################################################
+# Step 1 : Builder image
+#
+FROM node:10.15.1 AS builder
 
-FROM nginx:1.15.8-alpine
-COPY --from=build /usr/src/app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Define working directory and copy source
+WORKDIR /home/node/app
+COPY . .
+# Install dependencies and build whatever you have to build 
+# (babel, grunt, webpack, etc.)
+RUN npm install && npm run build
+
+###############################################################################
+# Step 2 : Run image
+#
+FROM node:10.15.1
+ENV NODE_ENV=production
+WORKDIR /home/node/app
+
+# Install deps for production only
+COPY ./package* ./
+RUN npm install && \
+    npm cache clean --force
+# Copy builded source from the upper builder stage
+COPY --from=builder /home/node/app/build ./build
+
+# Expose ports (for orchestrators and dynamic reverse proxies)
+EXPOSE 3000
+
+# Start the app
+CMD npm start
