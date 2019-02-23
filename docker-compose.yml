@@ -15,9 +15,9 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-      - ./mysql/etc/mysql/conf.d/conf.d:/etc/mysql/conf.d
-      - ./mysql/var/log/mysql:/var/log/mysql
+      - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/mysql/etc/mysql/conf.d/conf.d:/etc/mysql/conf.d
+      - ./docker/mysql/var/log/mysql:/var/log/mysql
 
 ### MongoDB ###
   mongo:
@@ -30,8 +30,8 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./mongo/data/db:/data/db
-      - ./mongo/data/configdb:/data/configdb
+      - ./docker/mongo/data/db:/data/db
+      - ./docker/mongo/data/configdb:/data/configdb
 
 ### Redis ###
   redis:
@@ -41,7 +41,7 @@ services:
       - 6379:6379
     command: redis-server --appendonly yes --requirepass foobared
     volumes:
-       - ./redis:/data
+       - ./docker/redis:/data
 
 ### RabbitMQ ###
   rabbitmq:
@@ -54,14 +54,14 @@ services:
       -  15672:15672
       -  5672:5672
 #    volumes:
-#      -  ./rabbitmq/etc/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
+#      -  ./docker/rabbitmq/etc/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
 
 ### social-server ###
 #  social-server:
 #    container_name: social-server
 #    image: hexaforce/social-server:latest
 #    volumes:
-#      - ./social-server/tmp:/tmp
+#      - ./docker/social-server/tmp:/tmp
 #    ports:
 #      - 8080:8080
 #    depends_on:
@@ -75,7 +75,7 @@ services:
 #    container_name: polls-server
 #    image: hexaforce/polls-server:latest
 #    volumes:
-#      - ./polls-server/tmp:/tmp
+#      - ./docker/polls-server/tmp:/tmp
 #    ports:
 #      - 808:8080
 #    depends_on:
@@ -89,7 +89,7 @@ services:
 #    container_name: petclinic-server
 #    image: hexaforce/petclinic-server:latest
 #    volumes:
-#      - ./petclinic-server/tmp:/tmp
+#      - ./docker/petclinic-server/tmp:/tmp
 #    ports:
 #      - 8080:8080
 #    depends_on:
@@ -103,7 +103,7 @@ services:
 #    container_name: websocket-service
 #    image: hexaforce/websocket:latest
 #    volumes:
-#      - ./websocket/tmp:/tmp
+#      - ./docker/websocket/tmp:/tmp
 #    ports:
 #      - 8080:8080
 #    depends_on:
