@@ -56,12 +56,40 @@ services:
 #    volumes:
 #      -  ./rabbitmq/etc/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
 
-### petclinic-service ###
-#  websocket:
-#    container_name: petclinic-service
+### social-server ###
+  social-server:
+    container_name: social-server
+    image: hexaforce/social-server:latest
+    volumes:
+      - ./social-server/tmp:/tmp
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+      - mongo
+      - redis
+      - rabbitmq
+
+### polls-server ###
+#  polls-server:
+#    container_name: polls-server
+#    image: hexaforce/polls-server:latest
+#    volumes:
+#      - ./polls-server/tmp:/tmp
+#    ports:
+#      - 808:8080
+#    depends_on:
+#      - mysql
+#      - mongo
+#      - redis
+#      - rabbitmq
+
+### petclinic-server ###
+#  petclinic-server:
+#    container_name: petclinic-server
 #    image: hexaforce/petclinic-server:latest
 #    volumes:
-#      - ./petclinic/tmp:/tmp
+#      - ./petclinic-server/tmp:/tmp
 #    ports:
 #      - 8080:8080
 #    depends_on:
@@ -83,7 +111,6 @@ services:
 #      - mongo
 #      - redis
 #      - rabbitmq
-
 
 ### spring-reactjs-polls ###
 #  spring-reactjs-polls:
