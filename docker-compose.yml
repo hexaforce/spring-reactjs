@@ -57,18 +57,18 @@ services:
 #      -  ./rabbitmq/etc/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
 
 ### social-server ###
-  social-server:
-    container_name: social-server
-    image: hexaforce/social-server:latest
-    volumes:
-      - ./social-server/tmp:/tmp
-    ports:
-      - 8080:8080
-    depends_on:
-      - mysql
-      - mongo
-      - redis
-      - rabbitmq
+#  social-server:
+#    container_name: social-server
+#    image: hexaforce/social-server:latest
+#    volumes:
+#      - ./social-server/tmp:/tmp
+#    ports:
+#      - 8080:8080
+#    depends_on:
+#      - mysql
+#      - mongo
+#      - redis
+#      - rabbitmq
 
 ### polls-server ###
 #  polls-server:
